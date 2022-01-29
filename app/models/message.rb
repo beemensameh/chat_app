@@ -2,6 +2,10 @@ class Message < ApplicationRecord
   belongs_to :chat
   validates :content, presence: true
 
+  # Add elasticsearch models
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+
   def as_json(options = {})
     super(options.merge({ except: [:id, :chat_id] }))
   end

@@ -7,7 +7,7 @@ class Chat < ApplicationRecord
 
   # This method is called when the job is executed to update the messages count
   def update_messages_count
-    self.messages_count = self.messages.count
+    self.messages_count = Message.where(chat_id: self.id).count
     self.save
   end
 

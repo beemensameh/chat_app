@@ -4,8 +4,11 @@ module Api
       def index
         application = Application.where('token' => params[:application_token]).first
         chat = Chat.where('application_id' => application.id).where('chat_number' => params[:chat_number]).first
+        if params[:query].present?
+          messages = Message.where('chat_id' => chat.id).search(query: {multi_match: {query: params[:query], fuzziness: 2, fields: ['content']}}).records
+        else
         messages = Message.where('chat_id' => chat.id)
-
+        end
         render json: messages
       end
 
