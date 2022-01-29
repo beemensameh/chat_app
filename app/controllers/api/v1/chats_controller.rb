@@ -1,9 +1,9 @@
 module Api
   module V1
     class ChatsController < ApplicationController
-      def show
+      def index
         application = Application.where('token' => params[:application_token]).first
-        chat = Chat.where('application_id' => application.id).where('chat_number' => params[:chat_number]).first
+        chat = Chat.where('application_id' => application.id)
 
         render json: chat
       end
