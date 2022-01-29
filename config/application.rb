@@ -31,5 +31,8 @@ module ChatApp
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+    # allow concurrency for requests
+    config.allow_concurrency=true
   end
 end
