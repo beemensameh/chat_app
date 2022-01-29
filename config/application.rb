@@ -1,4 +1,4 @@
-require_relative 'boot'
+require_relative "boot"
 
 require "rails"
 # Pick the frameworks you want:
@@ -33,6 +33,6 @@ module ChatApp
     config.api_only = true
 
     # allow concurrency for requests
-    config.allow_concurrency=true
+    config.allow_concurrency = true
   end
 end

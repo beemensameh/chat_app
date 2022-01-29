@@ -2,7 +2,7 @@ module Api
   module V1
     class ApplicationsController < ApplicationController
       def show
-        application = Application.where('token' => params[:token]).first
+        application = Application.where("token" => params[:token]).first
         render json: application
       end
 

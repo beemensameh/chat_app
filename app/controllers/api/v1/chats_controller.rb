@@ -2,15 +2,15 @@ module Api
   module V1
     class ChatsController < ApplicationController
       def index
-        application = Application.where('token' => params[:application_token]).first
-        chat = Chat.where('application_id' => application.id)
+        application = Application.where("token" => params[:application_token]).first
+        chat = Chat.where("application_id" => application.id)
 
         render json: chat
       end
 
       def create
-        application = Application.where('token' => params[:application_token]).first
-        chat = Chat.where('application_id' => application.id).count
+        application = Application.where("token" => params[:application_token]).first
+        chat = Chat.where("application_id" => application.id).count
 
         params[:application_id] = application.id
         params[:chat_number] = chat + 1
