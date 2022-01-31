@@ -1,0 +1,263 @@
+{
+	"info": {
+		"_postman_id": "2995667d-6289-4588-bd91-69b8d5e8f370",
+		"name": "Chat app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "application",
+			"item": [
+				{
+					"name": "Create application",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var data = JSON.parse(responseBody)",
+									"pm.globals.set(\"user_token\", data.token)",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"user3\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/applications",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"applications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get application",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/applications/:user_token",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"applications",
+								":user_token"
+							],
+							"variable": [
+								{
+									"key": "user_token",
+									"value": "{{user_token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "chat",
+			"item": [
+				{
+					"name": "Create chat",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/applications/:user_token/chats",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"applications",
+								":user_token",
+								"chats"
+							],
+							"variable": [
+								{
+									"key": "user_token",
+									"value": "{{user_token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Chats",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/applications/:user_token/chats",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"applications",
+								":user_token",
+								"chats"
+							],
+							"variable": [
+								{
+									"key": "user_token",
+									"value": "{{user_token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "messages",
+			"item": [
+				{
+					"name": "Create message",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\": \"tesat\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/applications/:user_token/chats/:chat_number/messages",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"applications",
+								":user_token",
+								"chats",
+								":chat_number",
+								"messages"
+							],
+							"variable": [
+								{
+									"key": "user_token",
+									"value": "{{user_token}}"
+								},
+								{
+									"key": "chat_number",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List messages",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/applications/:user_token/chats/:chat_number/messages",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"applications",
+								":user_token",
+								"chats",
+								":chat_number",
+								"messages"
+							],
+							"variable": [
+								{
+									"key": "user_token",
+									"value": "{{user_token}}"
+								},
+								{
+									"key": "chat_number",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search message",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/applications/:user_token/chats/:chat_number/messages?query=tesat",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"applications",
+								":user_token",
+								"chats",
+								":chat_number",
+								"messages"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "tesat"
+								}
+							],
+							"variable": [
+								{
+									"key": "user_token",
+									"value": "{{user_token}}"
+								},
+								{
+									"key": "chat_number",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

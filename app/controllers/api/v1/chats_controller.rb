@@ -3,6 +3,9 @@ module Api
     class ChatsController < ApplicationController
       def index
         application = Application.where("token" => params[:application_token]).first
+        if application.nil?
+          render json: { error: "Application not found" }, status: :not_found
+        end
         chat = Chat.where("application_id" => application.id)
 
         render json: chat
@@ -10,6 +13,9 @@ module Api
 
       def create
         application = Application.where("token" => params[:application_token]).first
+        if application.nil?
+          render json: { error: "Application not found" }, status: :not_found
+        end
         chat = Chat.where("application_id" => application.id).count
 
         params[:application_id] = application.id
