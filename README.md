@@ -28,7 +28,7 @@ before you start steps you will need docker and docker compose for this. If you 
 ```
 
 2. After the dockers start you can natigate to `127.0.0.1:3000` to see the app home page.
-3. You will find a postman collection in the root directory in the project. Just import it and change the `{{base_url}}` in the environment.
+3. You will find a postman collection and globals environment in the root directory in the project. Just import them.
 
 ## API Reference
 
